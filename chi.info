@@ -24,7 +24,8 @@ base theme = zen
   ; http://drupal.org/node/263967 for more details.
 stylesheets[all][]   = css/html-reset.css
 stylesheets[all][]   = css/wireframes.css
-stylesheets[all][]   = css/layout-fixed.css
+stylesheets[all][]   = css/1140.css
+stylesheets[all][]   = css/1140-styles.css
 stylesheets[all][]   = css/page-backgrounds.css
 stylesheets[all][]   = css/tabs.css
 stylesheets[all][]   = css/messages.css
@@ -44,10 +45,11 @@ stylesheets[print][] = css/print.css
 
   ; Set the conditional stylesheets that are processed by IE.
 conditional-stylesheets[if IE][all][]       = css/ie.css
+conditional-stylesheets[if IE][all][]       = css/1140-ie.css
 conditional-stylesheets[if lte IE 6][all][] = css/ie6.css
 
   ; Optionally add some JavaScripts to your theme.
-; scripts[] = js/script.js
+scripts[] = js/css3-mediaqueries.js
 
   ; The regions defined in Zen's default page.tpl.php file.  The name in
   ; brackets is the name of the variable in the page.tpl.php file, (e.g.
