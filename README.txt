@@ -16,7 +16,7 @@ The Drupal Zen Theme: http://drupal.org/project/zen
 * You must have the Drupal Zen theme in your themes directory, usually 
     /sites/all/themes
 
-* The current version of Chi was built against Zen Theme verions: 6.x-2.1
+* The current version of Chi was built against Zen Theme version: 6.x-2.1
 
 *** Branch or Simply Extend ***
 
@@ -28,7 +28,7 @@ Two options to modify this theme include:
 
 FURTHER EXTENSIONS OF YOUR SUB-THEME:
     Discover further ways to extend your sub-theme by reading Zen's
-    documentation online at:
+    documentation on-line at:
       http://drupal.org/node/193318
-    and Drupal 6's Theme Guide online at:
+    and Drupal 6's Theme Guide on line at:
       http://drupal.org/theme-guide
