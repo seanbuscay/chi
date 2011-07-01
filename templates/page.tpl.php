@@ -122,9 +122,9 @@
     <div id="skip-link"><a href="#main-menu"><?php print t('Jump to Navigation'); ?></a></div>
   <?php endif; ?>
 
-  <div id="page-wrapper"><div id="page">
+  <div id="page-wrapper" class="container"><div id="page">
 
-    <div id="header" class="container"> <div class="row"> <div class="section clearfix">
+    <div id="header" class="row">  <div class="section clearfix">
 
       <?php if ($logo): ?>
         <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
@@ -156,9 +156,9 @@
 
       <?php print $header; ?>
 
-    </div></div></div><!-- /.section, /#header -->
+    </div></div><!-- /.section, /#header -->
 
-    <div id="main-wrapper" class="container"> <div class="row"> <div id="main" class="clearfix<?php if ($primary_links || $navigation) { print ' with-navigation'; } ?>">
+    <div id="main-wrapper" class="row"> <div id="main" class="clearfix<?php if ($primary_links || $navigation) { print ' with-navigation'; } ?>">
 
       <div id="content" class="column"><div class="section">
 
@@ -216,10 +216,10 @@
 
       <?php print $sidebar_second; ?>
 
-    </div></div></div><!-- /#main, /#main-wrapper -->
+    </div></div><!-- /#main, /#main-wrapper -->
 
     <?php if ($footer || $footer_message || $secondary_links): ?>
-      <div id="footer" class="container"> <div class="row"><div class="section">
+      <div id="footer" class="row"> <div class="section">
 
         <?php print theme(array('links__system_secondary_menu', 'links'), $secondary_links,
           array(
@@ -239,7 +239,7 @@
 
         <?php print $footer; ?>
 
-      </div></div></div><!-- /.section, /#footer -->
+      </div></div><!-- /.section, /#footer -->
     <?php endif; ?>
 
   </div></div><!-- /#page, /#page-wrapper -->
