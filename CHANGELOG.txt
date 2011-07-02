@@ -1,0 +1,9 @@
+Change Log
+----
+Added a fix for the theme process issue 
+This is a fix for Zen from: 
+http://drupal.org/node/1181184 & http://drupal.org/node/1168324
+----
+Added function chi_preprocess_region
+
+To be able to add column width classes

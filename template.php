@@ -66,6 +66,18 @@
  */
 function chi_theme(&$existing, $type, $theme, $path) {
   $hooks = zen_theme($existing, $type, $theme, $path);
+  
+    // Override preprocess function suggestions for regions so that zen_process() will be called last.
+  $existing['region']['preprocess functions'] = array(
+    'template_preprocess',
+    'zen_preprocess',
+    'zen_preprocess_region',
+   // 'chi_preprocess',
+    'chi_preprocess_region',
+    'zen_process',
+  );
+  // @TODO: This is a fix for Zen from: http://drupal.org/node/1181184 && http://drupal.org/node/1168324
+  
   // Add your theme hooks like this:
   /*
   $hooks['hook_name_here'] = array( // Details go here );
@@ -73,6 +85,35 @@ function chi_theme(&$existing, $type, $theme, $path) {
   // @TODO: Needs detailed comments. Patches welcome!
   return $hooks;
 }
+
+
+
+
+/**
+ * Preprocess variables for region.tpl.php
+ *
+ * Prepare the values passed to the theme_region function to be passed into a
+ * pluggable template engine.
+ *
+ * @see region.tpl.php
+ */
+function chi_preprocess_region(&$vars, $hook) {
+  // Create the $content variable that templates expect.
+  $vars['content'] = $vars['elements']['#children'];
+  $vars['region'] = $vars['elements']['#region'];
+
+  // Setup the default classes.
+  $vars['classes_array'] = array('region', 'region-' . str_replace('_', '-', $vars['region']));
+
+  // Sidebar regions get a couple extra classes.
+  if (strpos($vars['region'], 'sidebar_') === 0) {
+    $vars['classes_array'][] = 'column';
+    $vars['classes_array'][] = 'sidebar';
+    $vars['classes_array'][] = 'threecol';
+    
+  }
+}
+
 
 /**
  * Override or insert variables into all templates.
