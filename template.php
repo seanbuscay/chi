@@ -67,17 +67,6 @@
 function chi_theme(&$existing, $type, $theme, $path) {
   $hooks = zen_theme($existing, $type, $theme, $path);
   
-    // Override preprocess function suggestions for regions so that zen_process() will be called last.
-  $existing['region']['preprocess functions'] = array(
-    'template_preprocess',
-    'zen_preprocess',
-    'zen_preprocess_region',
-   // 'chi_preprocess',
-    'chi_preprocess_region',
-    'zen_process',
-  );
-  // @TODO: This is a fix for Zen from: http://drupal.org/node/1181184 && http://drupal.org/node/1168324
-  
   // Add your theme hooks like this:
   /*
   $hooks['hook_name_here'] = array( // Details go here );
@@ -97,8 +86,14 @@ function chi_theme(&$existing, $type, $theme, $path) {
  *
  * @see region.tpl.php
  */
+/* -- Delete this line if you want to use this function
+
 function chi_preprocess_region(&$vars, $hook) {
-  // Create the $content variable that templates expect.
+//dpr ($vars);
+//@todo because of a bug in zen preprocessing orders, this logic does't make it to the template
+//so for now, it's all done in the page tpl
+	
+	// Create the $content variable that templates expect.
   $vars['content'] = $vars['elements']['#children'];
   $vars['region'] = $vars['elements']['#region'];
 
@@ -107,13 +102,15 @@ function chi_preprocess_region(&$vars, $hook) {
 
   // Sidebar regions get a couple extra classes.
   if (strpos($vars['region'], 'sidebar_') === 0) {
-    $vars['classes_array'][] = 'column';
-    $vars['classes_array'][] = 'sidebar';
-    $vars['classes_array'][] = 'threecol';
-    
+    $vars['classes_array'][] = 'threecol';    
   }
+  
+  if (strpos($vars['region'], 'second') !== false) {
+    $vars['classes_array'][] = 'last';    
+  }
+  
 }
-
+// */
 
 /**
  * Override or insert variables into all templates.
@@ -125,7 +122,7 @@ function chi_preprocess_region(&$vars, $hook) {
  */
 /* -- Delete this line if you want to use this function
 function chi_preprocess(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
+ // dpr ($vars);
 }
 // */
 
@@ -137,9 +134,10 @@ function chi_preprocess(&$vars, $hook) {
  * @param $hook
  *   The name of the template being rendered ("page" in this case.)
  */
-/* -- Delete this line if you want to use this function
 function chi_preprocess_page(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
+ //$vars['sample_variable'] = t('Lorem ipsum.');
+//dpr($vars);
+	_chi_column_classes (&$vars);
 
   // To remove a class from $classes_array, use array_diff().
   //$vars['classes_array'] = array_diff($vars['classes_array'], array('class-to-remove'));
@@ -194,3 +192,43 @@ function chi_preprocess_block(&$vars, $hook) {
   $vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
+
+function _chi_column_classes (&$vars) {
+  $vars['content_classes'] = array();
+  $vars['sidebar_first_classes'] = array();
+  $vars['sidebar_second_classes'] = array();
+
+  $classes = implode(' ', $vars['classes_array']);
+  //dpr ($vars['classes']);
+	
+  if (strpos($classes, 'no-sidebars') !== false) {
+	$vars['content_classes'][] = 'twelvecol';    
+  }
+	
+  if (strpos($classes, 'two-sidebars') !== false) {
+	$vars['content_classes'][] = 'sixcol';    
+	$vars['sidebar_first_classes'][] = 'threecol';
+	$vars['sidebar_second_classes'][] = 'threecol';
+	$vars['sidebar_second_classes'][] = 'last';
+  }
+  
+ if (strpos($classes, 'one-sidebar') !== false) {
+	$vars['content_classes'][] = 'ninecol';
+ 
+	if (strpos($classes, 'sidebar-first') !== false) {	
+	$vars['sidebar_first_classes'][] = 'threecol';
+	$vars['content_classes'][] = 'last';
+    }
+    
+ 	if (strpos($classes, 'sidebar-second') !== false) {	
+	$vars['sidebar_second_classes'][] = 'threecol';
+	$vars['sidebar_second_classes'][] = 'last';
+    }
+ } 
+    
+  $vars['content_classes'] = implode(' ', $vars['content_classes']);
+  $vars['sidebar_first_classes'] = implode(' ', $vars['sidebar_first_classes']);
+  $vars['sidebar_second_classes'] = implode(' ', $vars['sidebar_second_classes']);
+    
+    
+}
