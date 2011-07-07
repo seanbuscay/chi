@@ -159,15 +159,8 @@
     </div></div><!-- /.section, /#header -->
 
     <div id="main-wrapper" class="row"> <div id="main" class="clearfix<?php if ($primary_links || $navigation) { print ' with-navigation'; } ?>">
-
-    <?php if ($sidebar_first): //@todo moved this up before content thus breaking desired source order?>
-
-    <div class="<?php print $sidebar_first_classes; ?>">
-      <?php print $sidebar_first; ?>
-      
-    </div>
-      <?php endif; ?>
-      <div id="content" class="column <?php print $content_classes; ?>"><div class="section">
+		
+		<div id="content" class="column <?php print $content_classes; ?>"><div class="section">
 
         <?php if ($mission): ?>
           <div id="mission"><?php print $mission; ?></div>
@@ -218,6 +211,12 @@
 
         </div></div><!-- /.section, /#navigation -->
       <?php endif; ?>
+
+<?php if ($sidebar_first): ?>
+<div class="<?php print $sidebar_first_classes; ?>">
+	<?php print $sidebar_first; ?>
+</div>
+<?php endif; ?>
 
 <?php if ($sidebar_second): ?>
 <div class="<?php print $sidebar_second_classes; ?>">

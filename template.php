@@ -206,23 +206,31 @@ function _chi_column_classes (&$vars) {
   }
 	
   if (strpos($classes, 'two-sidebars') !== false) {
-	$vars['content_classes'][] = 'sixcol';    
+	$vars['content_classes'][] = 'sixcol'; 
+	$vars['content_classes'][] = 'centercol';    
 	$vars['sidebar_first_classes'][] = 'threecol';
+	$vars['sidebar_first_classes'][] = 'leftcol';
 	$vars['sidebar_second_classes'][] = 'threecol';
+	$vars['sidebar_second_classes'][] = 'rightcol';
 	$vars['sidebar_second_classes'][] = 'last';
   }
   
  if (strpos($classes, 'one-sidebar') !== false) {
 	$vars['content_classes'][] = 'ninecol';
+	$vars['content_classes'][] = 'centercol';
  
 	if (strpos($classes, 'sidebar-first') !== false) {	
+	$vars['sidebar_first_classes'][] = 'leftcol';
 	$vars['sidebar_first_classes'][] = 'threecol';
-	$vars['content_classes'][] = 'last';
+	$vars['sidebar_first_classes'][] = 'last';
+	$vars['content_classes'][] = 'withleft';
     }
     
  	if (strpos($classes, 'sidebar-second') !== false) {	
 	$vars['sidebar_second_classes'][] = 'threecol';
+	$vars['sidebar_second_classes'][] = 'rightcol';
 	$vars['sidebar_second_classes'][] = 'last';
+	$vars['content_classes'][] = 'withright';
     }
  } 
     
