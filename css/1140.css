@@ -26,6 +26,34 @@ float: left;
 min-height: 1px;
 }
 
+
+.leftcol {
+	float: left;
+	margin: 0;
+	margin-left: -73.85%;
+}
+
+.leftcol.last {
+	margin-left: -99%;
+}
+
+.sixcol.centercol {
+	float: left;
+	margin-left: 22.05%;
+}
+
+.ninecol.withleft {
+	float: left;
+	margin-left: 25.85%;
+	margin-right: 0;
+}
+
+.rightcol {
+	float: right;
+}
+
+
+
 .row .onecol {
 width: 4.85%;
 }
