@@ -202,7 +202,8 @@ function _chi_column_classes (&$vars) {
   //dpr ($vars['classes']);
 	
   if (strpos($classes, 'no-sidebars') !== false) {
-	$vars['content_classes'][] = 'twelvecol';    
+	$vars['content_classes'][] = 'twelvecol';
+	$vars['content_classes'][] = 'last'; 
   }
 	
   if (strpos($classes, 'two-sidebars') !== false) {
